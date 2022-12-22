@@ -1,0 +1,211 @@
+<ng-container>
+  <div class="headerContainer">
+    <div class="logo" routerLink="/">StudentCGPA</div>
+    <!-- <div class="nav-menu">
+      <li class="nav-link"><a routerLink="/students">Logout</a></li>
+    </div> -->
+  </div>
+</ng-container>
+<div class="heroContainer">
+  <form [formGroup]="calForm" (ngSubmit)="addCourses()">
+    <!-- <form action=""></form> -->
+    <div class="inputBox">
+      <div class="inputContainer">
+        <select
+          class="form-control"
+          name="course_code"
+          id="course_code"
+          formControlName="course"
+        >
+          <option>Select course code</option>
+          <option value="COS 101">COS 101</option>
+          <option value="CSS 201">CSS 201</option>
+          <option value="CSC 221">CSC 221</option>
+          <option value="CSC 351">CSC 351</option>
+          <option value="SSC 231">SSC 231</option>
+        </select>
+        <br />
+        <input
+          type="text"
+          id="matric_no"
+          placeholder="MATRICNO"
+          formControlName="matricNo"
+        />
+        <br />
+        <!-- <input type="text" id="course_code" placeholder="COURSE CODE (eg COS 101)"> -->
+        <input
+          type="number"
+          id="score"
+          placeholder="SCORE"
+          formControlName="score"
+        />
+        <br />
+        <!-- <input
+          type="number"
+          id="unit"
+          placeholder="UNITS"
+          formControlName="unit"
+        />
+        <br />
+        <span
+          *ngIf="
+            calForm.controls['unit'].dirty &&
+            calForm.hasError('required', 'unit')
+          "
+          style="font-size: 30px"
+          class="textValidate"
+          >Please input your score</span
+        > -->
+      </div>
+      <div class="btn-container">
+        <button type="submit" class="btn-blue">Add Course</button>
+        <!-- <button type="submit" class="btn-orange">
+          UPDATE
+        </button> -->
+      </div>
+    </div>
+  </form>
+
+  <!---Tables-->
+  <div class="tableContainer">
+    <table>
+      <tr>
+        <!-- <th>S/N</th> -->
+        <td>MatricNo</td>
+        <td>Course Code</td>
+        <td>Score</td>
+      </tr>
+
+      <tr *ngFor="let course of Courses">
+        <!-- <td>{{ i + 1 }}</td> -->
+        <td>{{ course.matricNo }}</td>
+        <td>{{ course.courseCode }}</td>
+        <td>{{ course.score }}</td>
+        <!-- <td>
+          <button type="submit" class="btn-orange" (click)="updateCourse()">
+            UPDATE
+          </button>
+        </td> -->
+        <!-- <td
+          style="color: red; font-weight: bold"
+          (click)="remove(course.matricNo)"
+        >
+          x
+        </td> -->
+      </tr>
+    </table>
+
+    <!-- <table>
+      <th>S/N</th>
+      <th>MatricNo</th>
+      <th>Course Code</th>
+    
+      <th>Score</th>
+  
+
+      <tr>
+        <td>FHSH</td>
+        <td>JFGRU</td>
+        <td>KFKFK</td>
+        
+        <td>JDJDJ</td>
+       
+      </tr>
+    </table> -->
+  </div>
+  <div class="scoreContainer">
+    <div class="average">
+      <p>Your Score:</p>
+      <p>{{ score }}</p>
+    </div>
+    <div>
+      <button class="btn-danger">Delete</button>
+      <!-- Button trigger modal -->
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-toggle="modal"
+        data-target="#exampleModalCenter"
+      >
+        Update
+      </button>
+
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="exampleModalCenter"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">
+                Update Course
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body d-flex flex-column">
+              <form [formGroup]="calForm" (ngSubmit)="updateCourse()">
+                <!-- <form action=""></form> -->
+                <div class="inputBox">
+                  <div class="inputModal">
+                    <select
+                      class="form-control"
+                      name="course_code"
+                      id="course_code"
+                      formControlName="course"
+                    >
+                      <option>Select course code</option>
+                      <option value="COS 101">COS 101</option>
+                      <option value="CSS 201">CSS 201</option>
+                      <option value="CSC 221">CSC 221</option>
+                      <option value="CSC 351">CSC 351</option>
+                      <option value="SSC 231">SSC 231</option>
+                    </select>
+                    <br />
+                    <input
+                      type="text"
+                      id="matric_no"
+                      placeholder="MATRICNO"
+                      formControlName="matricNo"
+                    />
+                    <br />
+                    <!-- <input type="text" id="course_code" placeholder="COURSE CODE (eg COS 101)"> -->
+                    <input
+                      type="number"
+                      id="score"
+                      placeholder="SCORE"
+                      formControlName="score"
+                    />
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="submit" class="btn btn-primary">
+                Save changes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
